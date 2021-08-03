@@ -26,6 +26,9 @@ function preload()
 	man_explosion_IMG=loadImage("images/explosion.png")
 	//explosion=loadSound("Explosion.mp3")
 	reset_IMG=loadImage("images/RESTART.png")
+	 
+  bg = loadSound("bgmusic.mp3");
+  explosion = loadSound("Explosion.mp3");
 }
 
 function setup() {
@@ -53,7 +56,8 @@ function draw() {
   rectMode(CENTER);
   background(background_IMG)
   console.log(gameState)
-  if(gameState==="play"){
+	if (gameState === "play") {
+	  bg.play()
 	  millitime=millitime+5
 	  if(millitime%100===0){
 		  timer=timer+1
@@ -104,7 +108,8 @@ if(life<=0){
 var man_explosion=createSprite(man.x,450)
 man_explosion.addImage(man_explosion_IMG)
 man_explosion.scale=1.5
-man.destroy()
+	  man.destroy()
+	  explosion.play()
 var reset=createSprite(400,350)
 reset.addImage(reset_IMG);
 if(mousePressedOver(reset)){
